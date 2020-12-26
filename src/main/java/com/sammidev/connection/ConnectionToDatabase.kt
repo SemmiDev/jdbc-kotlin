@@ -6,9 +6,15 @@ import java.sql.SQLException
 
 class ConnectionToDatabase {
 
-    var url = "jdbc:postgresql://localhost:5432/student"
+    var port = "5432"
+    var db = "postgresql"
+    var host = "localhost"
+    var dbName = "student"
+    var platform = "jdbc"
     var user = "postgres"
     var password = "sammidev"
+
+    var url = "$platform:$db://$host:$port/$dbName"
 
     fun createConnectionToPostgres(): Connection? {
         try {
@@ -22,9 +28,15 @@ class ConnectionToDatabase {
     }
     fun createConnectionToMysql(): Connection? {
 
-        url = "jdbc:mysql://localhost:3306/student"
+        port = "3306"
+        db = "mysql"
+        host = "localhost"
+        dbName = "student"
+        platform = "jdbc"
         user = "root"
         password = ""
+
+        url = "$platform:$db://$host:$port/$dbName"
 
         try {
             val connection: Connection = DriverManager.getConnection(url, user, password)
